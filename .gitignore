@@ -1,0 +1,16 @@
+# Python virtual environment
+venv/
+env/
+
+# SQLite database
+db.sqlite3
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Static files
+/staticfiles/
+
+# Migration files
+migrations/

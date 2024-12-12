@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Question</title>
+</head>
+<body>
+<h1>{{ question.text }}</h1>
+<form method="POST" action="{% url 'submit_answer' %}">
+    {% csrf_token %}
+    <input type="radio" name="option" value="A"> {{ question.option_a }}<br>
+    <input type="radio" name="option" value="B"> {{ question.option_b }}<br>
+    <input type="radio" name="option" value="C"> {{ question.option_c }}<br>
+    <input type="radio" name="option" value="D"> {{ question.option_d }}<br>
+    <input type="submit" value="Submit Answer">
+</form>
+</body>
+</html>

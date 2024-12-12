@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Results</title>
+</head>
+<body>
+<h1>Your Results</h1>
+<p>Total Questions Answered: {{ total_questions }}</p>
+<p>Correct Answers: {{ correct_answers }}</p>
+<p>Incorrect Answers: {{ incorrect_answers }}</p>
+<a href="{% url 'start_quiz' %}">Start New Quiz</a>
+</body>
+</html>
