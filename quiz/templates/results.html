@@ -2,13 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Results</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .results-container {
+            background: #ffffff;
+            color: #333;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            animation: slideIn 1s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #444;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            background: #ff7e5f;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        a:hover {
+            background: #feb47b;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            .results-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Your Results</h1>
-<p>Total Questions Answered: {{ total_questions }}</p>
-<p>Correct Answers: {{ correct_answers }}</p>
-<p>Incorrect Answers: {{ incorrect_answers }}</p>
-<a href="{% url 'start_quiz' %}">Start New Quiz</a>
+    <div class="results-container">
+        <h1>Your Results</h1>
+        <p>Total Questions Answered: {{ total_questions }}</p>
+        <p>Correct Answers: {{ correct_answers }}</p>
+        <p>Incorrect Answers: {{ incorrect_answers }}</p>
+        <a href="{% url 'start_quiz' %}">Start New Quiz</a>
+    </div>
 </body>
 </html>

@@ -2,17 +2,126 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Question</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .quiz-container {
+            background: #ffffff;
+            color: #333;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #444;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 15px;
+            background: #f7f7f7;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        label:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        label input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            background: #2575fc;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            background: #6a11cb;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>{{ question.text }}</h1>
-<form method="POST" action="{% url 'submit_answer' %}">
-    {% csrf_token %}
-    <input type="radio" name="option" value="A"> {{ question.option_a }}<br>
-    <input type="radio" name="option" value="B"> {{ question.option_b }}<br>
-    <input type="radio" name="option" value="C"> {{ question.option_c }}<br>
-    <input type="radio" name="option" value="D"> {{ question.option_d }}<br>
-    <input type="submit" value="Submit Answer">
-</form>
+    <div class="quiz-container">
+        <h1>{{ question.text }}</h1>
+        <form method="POST" action="{% url 'submit_answer' %}">
+            {% csrf_token %}
+            <label>
+                <input type="radio" name="option" value="A"> {{ question.option_a }}
+            </label>
+            <label>
+                <input type="radio" name="option" value="B"> {{ question.option_b }}
+            </label>
+            <label>
+                <input type="radio" name="option" value="C"> {{ question.option_c }}
+            </label>
+            <label>
+                <input type="radio" name="option" value="D"> {{ question.option_d }}
+            </label>
+            <input type="submit" value="Submit Answer">
+        </form>
+    </div>
 </body>
 </html>
