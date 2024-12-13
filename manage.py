@@ -2,8 +2,8 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from django.core.management import execute_from_command_line
 from django.core.wsgi import get_wsgi_application
+from django.core.management import execute_from_command_line, call_command
 from django.contrib.auth import get_user_model
 
 def main():
@@ -22,7 +22,11 @@ def main():
     # Setup Django apps
     application = get_wsgi_application()
 
-    # Create superuser automatically
+    # Run migrations first
+    print("Running migrations...")
+    execute_from_command_line(['manage.py', 'migrate'])
+
+    # Create superuser automatically (after migrations)
     User = get_user_model()
     if not User.objects.filter(is_superuser=True).exists():
         print("Creating superuser...")
@@ -33,10 +37,6 @@ def main():
         )
         print("Superuser created.")
         
-    # Run migrations
-    print("Running migrations...")
-    execute_from_command_line(['manage.py', 'migrate'])
-
     # Check for the PORT environment variable
     port = os.getenv("PORT", "8000")  # Default to port 8000 if PORT is not set
     if "runserver" in sys.argv:
