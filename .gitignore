@@ -11,6 +11,3 @@ __pycache__/
 
 # Static files
 /staticfiles/
-
-# Migration files
-migrations/
