@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+from django.contrib.auth import get_user_model
 
 def main():
     """Run administrative tasks."""
@@ -16,6 +16,17 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
 
+    # Create superuser automatically
+    User = get_user_model()
+    if not User.objects.filter(is_superuser=True).exists():
+        print("Creating superuser...")
+        User.objects.create_superuser(
+            username="admin",  # Change as necessary
+            email="admin@example.com",  # Change as necessary
+            password="adminpassword"  # Change as necessary
+        )
+        print("Superuser created.")
+        
     # Check for the PORT environment variable
     port = os.getenv("PORT", "8000")  # Default to port 8000 if PORT is not set
     if "runserver" in sys.argv:
