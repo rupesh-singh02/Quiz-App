@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_8cc$bru+lp9)mjpoec8p=$r+)6dlp&1ol44@9wnc7v&2clcsg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['quiz-app-0r1n.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -122,3 +122,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://quiz-app-0r1n.onrender.com',  # Your domain
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
