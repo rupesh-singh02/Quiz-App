@@ -5,6 +5,7 @@ import sys
 from django.core.wsgi import get_wsgi_application
 from django.core.management import execute_from_command_line, call_command
 from django.contrib.auth import get_user_model
+import webbrowser
 
 def main():
     """Run administrative tasks."""
@@ -46,6 +47,10 @@ def main():
             sys.argv.append(f"0.0.0.0:{port}")
         else:
             sys.argv[sys.argv.index("runserver") + 1] = f"0.0.0.0:{port}"
+
+        server_url = f"http://localhost:{port}/quiz/question/"  # Adjust for your local testing
+        print(f"Opening browser at {server_url}...")
+        webbrowser.open(server_url)
 
     execute_from_command_line(sys.argv)
 
