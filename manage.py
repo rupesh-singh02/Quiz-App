@@ -25,6 +25,7 @@ def main():
     # Run migrations first
     print("Running migrations...")
     execute_from_command_line(['manage.py', 'migrate'])
+    execute_from_command_line(['manage.py', 'migrate', 'quiz'])
 
     # Create superuser automatically (after migrations)
     User = get_user_model()
