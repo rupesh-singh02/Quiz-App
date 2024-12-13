@@ -17,9 +17,13 @@ def main():
         ) from exc
 
     # Check for the PORT environment variable
-    port = os.getenv("PORT")
-    if port and "runserver" in sys.argv:
-        sys.argv[sys.argv.index("runserver") + 1] = f"0.0.0.0:{port}"
+    port = os.getenv("PORT", "8000")  # Default to port 8000 if PORT is not set
+    if "runserver" in sys.argv:
+        # Check if the port is already provided; if not, append it
+        if len(sys.argv) == sys.argv.index("runserver") + 1:
+            sys.argv.append(f"0.0.0.0:{port}")
+        else:
+            sys.argv[sys.argv.index("runserver") + 1] = f"0.0.0.0:{port}"
 
     execute_from_command_line(sys.argv)
 
